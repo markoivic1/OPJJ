@@ -1,0 +1,9 @@
+{$ for i 2 3 4 $}
+{$ for i 2 3 4 $}
+{$ for i 2 3 4 $} Some text here.
+{$ for i 2 3 4 $}
+{$= sa "qq" 1.42 a$}
+{$end$}
+{$end$}
+{$end$}
+{$end$}

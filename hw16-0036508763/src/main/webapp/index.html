@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Galerija</title>
+
+    <style>
+        body {
+            background-color: #f7fff7;
+        }
+
+        .tagButton {
+            background-color: #4ecdc4;
+            color: white;
+            margin-top: 5px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 4px;
+            box-shadow: 0 3px #999;
+        }
+
+        .tagButton:hover {
+            background-color: #1a535c
+        }
+
+        .tagButton:active {
+            background-color: #4ecdc4;
+            box-shadow: 0 2px #666;
+            transform: translateY(1px);
+        }
+
+        h1 {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            color: #1a535c;
+        }
+
+        h2 {
+            color: #3c6e71;
+            text-align: center;
+        }
+
+        hr {
+            border-top: 1px solid #4ecdc4;
+            border-bottom: 1px solid #4ecdc4;
+        }
+
+        .image {
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thumbnail {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        .thumbnail:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+
+        .title {
+            text-align: center;
+            font-variant: small-caps;
+            color: #1a535c;
+            font-size: 50px;
+        }
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"><!--
+
+    $(document).ready(function () {
+        drawTags();
+    });
+
+    function drawImage(imageName) {
+        if (imageName == null || imageName === "") {
+            return;
+        }
+        $.ajax(
+            {
+                data: {
+                    dummy: Math.random()
+                },
+                url: "image?imageName=" + imageName,
+                type: "GET",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    var html = "<hr>";
+                    html += "<h1>" + data.imageName + "</h1>" + "<br>";
+                    html += "<h2>" + data.imageDescription + "</h2>" + "<br>";
+                    for (var i = 0; i < data.tags.length; i++) {
+                        html += "<button class='tagButton' type='button' onclick=\'drawThumbnails(\"" + data.tags[i] + "\")\'>" + data.tags[i] + "</button>";
+                    }
+                    html += "<img class='image' src='data:image/jpg;base64," + data.image + "'>";
+                    $("#fullImage").html(html);
+                }
+            }
+        );
+    }
+
+    function drawThumbnails(tag) {
+        if (tag == null || tag === "") {
+            return
+        }
+        $.ajax(
+            {
+                data: {
+                    dummy: Math.random()
+                },
+                url: "thumbnails?tag=" + tag,
+                type: "GET",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    var html = "<hr>";
+                    for (var i = 0; i < data.thumbnails.length; i++) {
+                        html += "<img class='thumbnail' onclick=\'drawImage(\"" + data.thumbnails[i].imageName + "\")\' src='data:image/jpg;base64," + data.thumbnails[i].image + "'>"
+                    }
+                    $("#thumbnails").html(html);
+                    $("#fullImage").html("");
+                }
+            }
+        );
+    }
+
+    function drawTags() {
+        $.ajax(
+            {
+                data: {
+                    dummy: Math.random()
+                },
+                url: "rest/tags",
+                type: "GET",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    var tagsData = data;
+                    var html = "";
+                    if (tags.length == 0) {
+                        html = "Nema slika...";
+                    } else {
+                        for (var i = 0; i < tagsData.tags.length; i++) {
+                            html += "<button class='tagButton' type='button' onclick=\'drawThumbnails(\"" + tagsData.tags[i] + "\")\'>" + tagsData.tags[i] + "</button>";
+                        }
+                    }
+                    $("#tags").html(html);
+                }
+            }
+        );
+    }
+
+    //--></script>
+
+</head>
+
+<body>
+<div class="title">Galerija</div>
+<hr>
+<div id="tags"></div>
+<div id="thumbnails"></div>
+<div id="fullImage"></div>
+</body>
+
+</html>

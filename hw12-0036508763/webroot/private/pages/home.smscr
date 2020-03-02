@@ -1,0 +1,42 @@
+{$= "text/html" @setMimeType $}
+<!DOCTYPE html>
+<html>
+  <head>
+
+     <a href="
+     /index2.html">{$= "index" "" @tparamGet $}</a>
+
+      <style>
+        body {background-color: #{$= "background" "000000" @tparamGet $};}
+      </style>
+  </head>
+  <body>
+
+   <table border="1">
+    <thead>
+     <tr><td><a href="/scripts/osnovni.smscr">osnovni.smscr</a></td></tr>
+     <tr><td><a href="/scripts/brojPoziva.smscr">brojPoziva.smscr</a></td></tr>
+     <tr><td><a href="/scripts/fibonaccih.smscr">fibonaccih.smscr</a></td></tr>
+     <tr><td><a href="/ext/HelloWorker">Hello Worker</a></td></tr>
+     <tr><td><a href="/ext/CircleWorker">Circle Worker</a></td></tr>
+    </thead>
+   </table>
+
+     <form action="/calc" method="get" target="_blank">
+            a: <input type="text" name="a" value="0"><br>
+            b: <input type="text" name="b" value="0"><br>
+            <input type="submit" value="Submit">
+     </form>
+     <br>
+     <form action="/setbgcolor" id="color">
+       <input type="submit">
+     </form>
+     <select name="bgcolor" form="color">
+        <OPTION value="FF0000">Red</OPTION>
+        <OPTION value="FFFFFF">White</OPTION>
+        <OPTION value="ffa500">Orange</OPTION>
+        <OPTION value="INVALID">Invalid color</OPTION>
+     </select>
+     {$= "updated" "" @tparamGet $}
+  </body>
+</html>

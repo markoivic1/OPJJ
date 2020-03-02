@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webapp-bazaorm:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>webapp-bazaorm</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="webapp-bazaorm.war">
+      <element id="artifact" artifact-name="webapp-bazaorm:war exploded" />
+    </root>
+  </artifact>
+</component>

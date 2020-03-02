@@ -1,0 +1,2 @@
+{$= "text/plain" @setMimeType $}
+{$ = "Datum je "      "yyyy-MM-dd" @now      " a vrijeme je "      "HH:mm:ss" @now $}

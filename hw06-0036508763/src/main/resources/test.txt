@@ -1,0 +1,17 @@
+Hello
+This is a file to test cat command.
+This is some text.
+This is some other text.
+
+.
+dot
+..
+end
+no really the end.
+s
+sa
+
+a
+
+a
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssssssssssssscccccccccccxyyyyyyyyyyyy
