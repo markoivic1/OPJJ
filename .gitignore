@@ -1,2 +1,6 @@
 hw**/target/
+hw**/**.iml
+hw**/.idea
+hw**/.idea/*
 .idea
+
