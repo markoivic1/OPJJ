@@ -1,5 +1,4 @@
-hw**/target/
-hw**/**.iml
-hw**/.idea/
-.idea
+**/target/
+**.iml
+**/.idea/
 
